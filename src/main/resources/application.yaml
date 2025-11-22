@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: device-api
+
+  profiles:
+    active: local
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db_changelog/db.changelog-master.xml
