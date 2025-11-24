@@ -5,7 +5,6 @@ import com.example.device.api.entity.DeviceState;
 import com.example.device.api.exception.DeviceAlreadyExistsException;
 import com.example.device.api.exception.ForbiddenOperationException;
 import com.example.device.api.repository.DeviceRepository;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,8 +13,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class DeviceValidatorTest {

@@ -1,6 +1,7 @@
 package com.example.device.api.service;
 
 import com.example.device.api.entity.Device;
+import com.example.device.api.entity.DeviceState;
 import com.example.device.api.exception.DeviceNotFoundException;
 import com.example.device.api.exception.ForbiddenOperationException;
 import com.example.device.api.repository.DeviceRepository;
@@ -13,9 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import com.example.device.api.entity.DeviceState;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

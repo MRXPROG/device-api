@@ -8,7 +8,9 @@ import com.example.device.api.exception.dto.ErrorDetailsDto;
 import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
@@ -22,8 +24,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import jakarta.validation.ConstraintViolationException;
 
 import java.util.Arrays;
 
@@ -118,6 +118,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 );
 
         return build(ErrorDetailsDto.of(ErrorCode.INVALID_REQUEST, message));
+    }
+
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorDetailsDto> handleUniqueConstraint(DataIntegrityViolationException ex) {
+        return build(ErrorDetailsDto.of(ErrorCode.DEVICE_ALREADY_EXISTS,
+                "Device with this brand and name already exists"));
     }
 
     @Override

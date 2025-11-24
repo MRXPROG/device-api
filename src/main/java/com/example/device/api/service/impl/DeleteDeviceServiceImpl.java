@@ -2,7 +2,6 @@ package com.example.device.api.service.impl;
 
 import com.example.device.api.entity.Device;
 import com.example.device.api.exception.DeviceNotFoundException;
-
 import com.example.device.api.repository.DeviceRepository;
 import com.example.device.api.service.DeleteDeviceService;
 import com.example.device.api.service.DeviceValidator;

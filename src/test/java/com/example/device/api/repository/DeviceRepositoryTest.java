@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -121,7 +122,7 @@ class DeviceRepositoryTest {
         );
 
         assertEquals(1, list.size());
-        assertEquals("iPhone 14", list.get(0).getName());
+        assertEquals("iPhone 14", list.getFirst().getName());
     }
 
     @Test

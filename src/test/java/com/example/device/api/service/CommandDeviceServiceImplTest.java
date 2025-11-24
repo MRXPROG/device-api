@@ -11,7 +11,6 @@ import com.example.device.api.exception.ForbiddenOperationException;
 import com.example.device.api.mapper.DeviceMapper;
 import com.example.device.api.repository.DeviceRepository;
 import com.example.device.api.service.impl.CommandDeviceServiceImpl;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +20,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

@@ -3,7 +3,6 @@ package com.example.device.api.entity.helper;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
-import lombok.Data;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedDate;

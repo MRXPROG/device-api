@@ -10,10 +10,10 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
@@ -25,7 +25,6 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @RequestMapping("/device-api")
 @RequiredArgsConstructor
 @Slf4j
-@Validated
 public class CommandDeviceController {
 
     private final CommandDeviceService commandService;
@@ -94,7 +93,7 @@ public class CommandDeviceController {
     @PutMapping(value = "/{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<DeviceResponse> updateDevice(
             @PathVariable Long id,
-            @RequestBody UpdateDeviceRequest request
+            @Valid @RequestBody UpdateDeviceRequest request
     ) {
         log.info("PUT update device id={}", id);
         return ResponseEntity.ok(commandService.updateDevice(id, request));
@@ -156,7 +155,7 @@ public class CommandDeviceController {
     @PatchMapping(value = "/{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<DeviceResponse> patchDevice(
             @PathVariable Long id,
-            @RequestBody PatchDeviceRequest request
+            @Valid @RequestBody PatchDeviceRequest request
     ) {
         log.info("PATCH update device id={}", id);
         return ResponseEntity.ok(commandService.patchDevice(id, request));

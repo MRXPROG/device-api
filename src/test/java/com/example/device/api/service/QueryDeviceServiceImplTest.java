@@ -1,7 +1,9 @@
 package com.example.device.api.service;
 
 import com.example.device.api.dto.requests.DeviceFilterRequest;
+import com.example.device.api.dto.responses.DeviceResponse;
 import com.example.device.api.entity.Device;
+import com.example.device.api.entity.DeviceState;
 import com.example.device.api.exception.DeviceNotFoundException;
 import com.example.device.api.mapper.DeviceMapper;
 import com.example.device.api.repository.DeviceRepository;
@@ -16,9 +18,6 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
-
-import com.example.device.api.dto.responses.DeviceResponse;
-import com.example.device.api.entity.DeviceState;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -113,27 +112,6 @@ class QueryDeviceServiceImplTest {
 
         verify(repository).findFiltered("Apple", "iPhone", DeviceState.AVAILABLE, pageable);
         verify(mapper).toResponse(d1);
-    }
-
-    @Test
-    void getDevices_EmptyResults_NotFoundException() {
-        DeviceFilterRequest request = new DeviceFilterRequest()
-                .setBrand("Apple")
-                .setName("iPhone")
-                .setState(DeviceState.AVAILABLE)
-                .setLimit(10)
-                .setOffset(0);
-
-        Pageable pageable = PaginationUtils.offsetPagination(0, 10);
-
-        when(repository.findFiltered("Apple", "iPhone", DeviceState.AVAILABLE, pageable))
-                .thenReturn(List.of());
-
-        assertThrows(DeviceNotFoundException.class,
-                () -> queryDeviceService.getDevices(request));
-
-        verify(repository).findFiltered("Apple", "iPhone", DeviceState.AVAILABLE, pageable);
-        verifyNoInteractions(mapper);
     }
 
     private Device sampleDevice() {

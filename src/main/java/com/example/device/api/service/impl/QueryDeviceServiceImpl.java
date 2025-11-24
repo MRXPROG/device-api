@@ -10,7 +10,6 @@ import com.example.device.api.repository.DeviceRepository;
 import com.example.device.api.service.QueryDeviceService;
 import com.example.device.api.utils.PaginationUtils;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -76,9 +75,6 @@ public class QueryDeviceServiceImpl implements QueryDeviceService {
 
         List<Device> devices = repository.findFiltered(brand, name, state, pageable);
 
-        if (devices.isEmpty()) {
-            throw new DeviceNotFoundException("No devices found matching filters");
-        }
         return devices.stream()
                 .map(mapper::toResponse)
                 .toList();

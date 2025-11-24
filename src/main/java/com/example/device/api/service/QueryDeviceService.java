@@ -28,7 +28,7 @@ public interface QueryDeviceService {
      * Fetch device by unique brand + name pair.
      *
      * @param brand device brand
-     * @param name device name
+     * @param name  device name
      * @return DeviceResponse
      */
     DeviceResponse getDeviceByBrandAndName(String brand, String name);

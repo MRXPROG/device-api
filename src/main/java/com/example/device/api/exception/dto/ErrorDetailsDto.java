@@ -29,6 +29,10 @@ public class ErrorDetailsDto {
         this.httpStatus = errorCode.getStatus();
     }
 
+    public static ErrorDetailsDto of(ErrorCode code, String msg) {
+        return new ErrorDetailsDto(code, msg);
+    }
+
     private ErrorType mapType(ErrorCode error) {
         return switch (error) {
             case DEVICE_NOT_FOUND -> ErrorType.NOT_FOUND;
@@ -36,9 +40,5 @@ public class ErrorDetailsDto {
             case INVALID_REQUEST -> ErrorType.VALIDATION_ERROR;
             default -> ErrorType.INTERNAL_ERROR;
         };
-    }
-
-    public static ErrorDetailsDto of(ErrorCode code, String msg) {
-        return new ErrorDetailsDto(code, msg);
     }
 }

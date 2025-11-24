@@ -21,13 +21,14 @@ public class DeviceFilterRequest {
      */
     @Size(min = 3, max = 255, message = "Brand must be at least 3 characters")
     @Schema(description = "OPTIONAL: device brand filter",
-            required = false
+            requiredMode = Schema.RequiredMode.NOT_REQUIRED
     )
     private String brand;
 
     @Size(min = 3, max = 255, message = "Name must be at least 3 characters")
     @Schema(description = "OPTIONAL: device name filter",
-            required = false)
+            requiredMode = Schema.RequiredMode.NOT_REQUIRED
+    )
     private String name;
 
     /**
@@ -36,7 +37,7 @@ public class DeviceFilterRequest {
      */
     @Schema(
             description = "Device state (optional)",
-            required = false,
+            requiredMode = Schema.RequiredMode.NOT_REQUIRED,
             allowableValues = {"AVAILABLE", "IN_USE", "INACTIVE"}
     )
     private DeviceState state;
@@ -46,7 +47,9 @@ public class DeviceFilterRequest {
      * Defaults to 100.
      */
     @Min(value = 1, message = "Limit must be at least 1")
-    @Schema(description = "Max number of records to return", readOnly = false, example = "100", defaultValue = "100")
+    @Schema(description = "Max number of records to return",
+            requiredMode = Schema.RequiredMode.NOT_REQUIRED
+            , example = "100", defaultValue = "100")
     private Integer limit = 100;
 
     /**
@@ -54,6 +57,8 @@ public class DeviceFilterRequest {
      * Defaults to 0.
      */
     @Min(value = 0, message = "Offset cannot be negative")
-    @Schema(description = "Offset for pagination", example = "0", required = false, defaultValue = "0")
+    @Schema(description = "Offset for pagination", example = "0",
+            requiredMode = Schema.RequiredMode.NOT_REQUIRED,
+            defaultValue = "0")
     private Integer offset = 0;
 }

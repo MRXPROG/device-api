@@ -32,11 +32,11 @@ public interface DeviceRepository extends JpaRepository<Device, Long> {
     Optional<Device> findByBrandAndName(String brand, String name);
 
     @Query("""
-        SELECT d FROM Device d
-        WHERE (:brand IS NULL OR d.brand = :brand)
-          AND (:name IS NULL OR d.name = :name)
-          AND (:state IS NULL OR d.state = :state)
-        """)
+            SELECT d FROM Device d
+            WHERE (:brand IS NULL OR d.brand = :brand)
+              AND (:name IS NULL OR d.name = :name)
+              AND (:state IS NULL OR d.state = :state)
+            """)
     List<Device> findFiltered(
             @Param("brand") String brand,
             @Param("name") String name,

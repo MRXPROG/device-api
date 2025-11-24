@@ -10,11 +10,11 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +29,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/device-api")
 @RequiredArgsConstructor
 @Slf4j
-@Validated
 public class QueryDeviceController {
 
     private final QueryDeviceService queryDeviceService;
@@ -115,7 +114,7 @@ public class QueryDeviceController {
     })
     @GetMapping(value = "/devices",produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<DeviceResponse>> getDevices(
-            @ParameterObject DeviceFilterRequest request) {
+            @ParameterObject @Valid DeviceFilterRequest request) {
 
         log.info(
                 "Fetching devices with brand={}, name={}, state={}, limit={}, offset={}",
@@ -170,8 +169,8 @@ public class QueryDeviceController {
     })
     @GetMapping(value = "/search", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<DeviceResponse> getDeviceByBrandAndName(
-            @RequestParam String brand,
-            @RequestParam String name
+            @RequestParam  String brand,
+            @RequestParam  String name
     ) {
         log.info("Fetching device by brand={} and name={}", brand, name);
         return ResponseEntity.ok(queryDeviceService.getDeviceByBrandAndName(brand, name));

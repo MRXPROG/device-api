@@ -27,5 +27,9 @@ public class PatchDeviceRequest {
     )
     private String brand;
 
+    @Schema(
+            description = "Device state (optional)",
+            allowableValues = {"AVAILABLE", "IN_USE", "INACTIVE"}
+    )
     private DeviceState state;
 }
